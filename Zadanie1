@@ -1,0 +1,68 @@
+import math as mt
+
+# Połowy rzeczy pewnie brakuje
+
+MTOW = 830
+m = MTOW
+
+bk = 0.82 
+b = 4.42 # Długosc skrzydłą od osi kadłuba do końcówki skrzydłą /2 
+AoA = 2 
+alfa = AoA*mt.pi/180 # deg
+LOK = 1.92
+Lk = 1.12
+qms = 14
+Cmo = -0.009
+alfaCz = 2
+
+bs = (2*b-bk)/2
+
+ylsa = (bs/3)*(LOK+2*Lk)/(LOK+Lk)
+Lsa = 1.56
+
+# Pz = 830*9.81
+
+Px = 1
+Ss = 2*((LOK+Lk)*(b-bk))/2
+S= 2*((LOK+Lk)*(b))/2
+
+ms = qms*S #kg
+n = 1
+g = 9.81
+v = 208/3.6
+Cz = Pz/(0.5*1.225*(v**2)*1.65*(2*b-2*bk))
+
+Cz = round(Cz,3) # Zaokrąglenie do 3 miejsc po przecinku
+
+Pna = Pz*mt.cos(alfa)+Px*mt.sin(alfa)
+Pta = Px*mt.cos(alfa)-Pz*mt.sin(alfa)
+Pnm = -ms*g*mt.cos(alfa)
+Ptm = -ms*g*n*mt.sin(alfa)
+
+Yna = -1*Pna*(ylsa)/(LOK*0.12)
+YBna = Pna*Pna*(ylsa)/(LOK*0.12)
+ZCna = -1*Pna*0.13/0.73
+ZAna = -(1-0.18)*Pna
+XBna = 0
+YCna = 0
+YAnm = 7.94*Pnm
+YBnm = -7.94*Pnm
+ZAnm = 0.27/0.073*Pnm
+ZCnm = (1-0.37)*Pnm
+
+XBnm = 0
+XCnm = 0
+
+Pt = Pta + Ptm
+XBt = -1*Pt
+
+Mo = Cmo* # Moment obracający - brakuje zmiennej
+
+YCt = = -1*Pt*1.83/0.73
+YAt = 1.25*Pt
+YBt = 1.25*Pt
+XBMo = 0
+YAMo = 0
+YCMo = 0
+ZAMo = Mo/0.73
+ZCMo = -1*Mo/0.73
