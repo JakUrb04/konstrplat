@@ -1,0 +1,31 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Dane
+MTOW = 2422100 # Maksymalna masa startowa z uwzględnieniem g, więc jednostka [N]
+Y = 30 # Długość dzwigara w metrach 
+
+# Obliczanie MTOW działającej na jedno skrzydło
+mtow_wing = MTOW/2
+
+# Obliczanie siły eliptycznej
+
+b = mtow_wing/3.14/Y
+dx = 0.5
+x = np.arange(0, Y + dx, dx)
+y = 2 * b * np.sqrt(1 - (x / Y) ** 2)
+
+plt.plot(x, y, linewidth=2, color='black')
+plt.fill_between(x, 0, y, color="skyblue", alpha=0.5)
+plt.xlabel('Długość dzwigara [m]')
+plt.ylabel('Wartość siły eliptycznej [N]')
+plt.title('Rozkład siły eliptycznej')
+plt.grid(True, linestyle='dashdot', linewidth=0.5, color='darkgrey')
+#plt.show()
+
+
+# Sumaryczna siła eliptyczna
+
+elliptic_force = round(np.sum(y)*dx,1)
+#print(f"Sumaryczna siła eliptyczna wynosi {elliptic_force} [N]")
