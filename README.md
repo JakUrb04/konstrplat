@@ -1,2 +1,2 @@
-# konstrplatowcow
+# Repozytorium dla przedmiotu konstrukcja płatowców
 
